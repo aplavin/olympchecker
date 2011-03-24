@@ -23,6 +23,9 @@ namespace OlympChecker
 
         private static void Main(string[] args)
         {
+            Thread thread = new Thread(Utils.CheckForUpdates);
+            thread.Start();
+
             Utils.PrintLine(Text.Copyright + "\n", ConsoleColor.Cyan);
 
 

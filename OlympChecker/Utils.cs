@@ -1,5 +1,8 @@
 ﻿
 using System;
+using System.Net;
+using System.Text;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
@@ -12,6 +15,28 @@ namespace OlympChecker
 	static class Utils
     {
         public static string programDir = Directory.GetCurrentDirectory();
+        private const string version = "2";
+        private const string downloadUrl = "";
+
+        public static void CheckForUpdates()
+        {
+            try
+            {
+                byte[] data = new WebClient().DownloadData("https://olympchecker.googlecode.com/hg/version");
+                string newestVer = Encoding.ASCII.GetString(data);
+
+                if (newestVer != version)
+                {
+                    if (MessageBox.Show("Доступна новая версия программы (" + newestVer + "). Загрузить?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(downloadUrl);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
 
         public static Process StartProcess(string fileName, string args = "", bool oneProcessor = false)
         {
