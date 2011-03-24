@@ -26,7 +26,7 @@ namespace OlympChecker
                 IConfig settings = configSource.AddConfig("Settings");
                 settings.Set("Lang", "ru");
                 IConfig solutionConfig = configSource.AddConfig("Solution");
-                solutionConfig.Set("FileName", "");
+                solutionConfig.Set("InOutFileName", "*put.txt");
                 solutionConfig.Set("Precompiled", "false");
                 solutionConfig.Set("Compiler", "C:\\MinGW\\bin\\g++.exe");
                 solutionConfig.Set("CompileOptions", "-O2 -s");
@@ -51,10 +51,10 @@ namespace OlympChecker
 
             configSource.Configs["Checker"].Set("Source", Path.Combine(Utils.programDir, "checkers\\" + configSource.Configs["Checker"].Get("Name")));
 
-            if (configSource.Configs["Solution"].Get("FileName").Trim() == "")
+            if (configSource.Configs["Solution"].Get("InOutFileName").Trim() == "")
             {
                 string name = System.IO.Path.GetFileNameWithoutExtension(configSource.Configs["Solution"].Get("Source"));
-                configSource.Configs["Solution"].Set("FileName", name);
+                configSource.Configs["Solution"].Set("InOutFileName", name);
             }
         }
 
@@ -63,18 +63,18 @@ namespace OlympChecker
         #endregion
 
         #region Solution
-        public static string SolutionFileName { get { return GetString("Solution", "FileName"); } }
+        public static string SolutionFileInOut { get { return GetString("Solution", "InOutFileName"); } }
         public static string SolutionFileIn
         {
             get
             {
-                if (SolutionFileName.Contains("*"))
+                if (SolutionFileInOut.Contains("*"))
                 {
-                    return SolutionFileName.Replace("*", "in");
+                    return SolutionFileInOut.Replace("*", "in");
                 }
                 else
                 {
-                    return SolutionFileName + ".in";
+                    return SolutionFileInOut + ".in";
                 }
             }
         }
@@ -82,13 +82,13 @@ namespace OlympChecker
         {
             get
             {
-                if (SolutionFileName.Contains("*"))
+                if (SolutionFileInOut.Contains("*"))
                 {
-                    return SolutionFileName.Replace("*", "out");
+                    return SolutionFileInOut.Replace("*", "out");
                 }
                 else
                 {
-                    return SolutionFileName + ".out";
+                    return SolutionFileInOut + ".out";
                 }
             }
         }

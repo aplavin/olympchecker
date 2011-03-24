@@ -9,7 +9,19 @@ namespace OlympChecker
     {
         private static string fileName = "locale.ini";
         private static IniConfigSource configSource;
-        public static string lang { get; set; }
+        private static string _lang = "ru";
+        public static string lang
+        {
+            get
+            {
+                return _lang;
+            }
+
+            set
+            {
+                _lang = value;
+            }
+        }
 
         static Text()
         {

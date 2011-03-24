@@ -16,7 +16,7 @@ namespace OlympChecker
     {
         public static string programDir = Directory.GetCurrentDirectory();
         private const string version = "2.0";
-        private const string downloadUrl = "";
+        private const string downloadUrl = "http://olympchecker.googlecode.com/files/OlympChecker.7z";
 
         public static void CheckForUpdates()
         {
@@ -29,7 +29,7 @@ namespace OlympChecker
                 {
                     if (MessageBox.Show(Text.NewVersionAvailable, "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        new WebClient().DownloadFile(downloadUrl, "OlympChecker.exe");
+                        new WebClient().DownloadFile(downloadUrl, Path.Combine(programDir, "OlympChecker.7z"));
                         MessageBox.Show(Text.Downloaded);
                     }
                 }
