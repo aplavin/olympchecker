@@ -58,6 +58,10 @@ namespace OlympChecker
 
         public static string AllFound { get { return Get("AllFound", "All specified files found."); } }
 
+        public static string NewVersionAvailable { get { return Get("NewVersionAvailable", "New version of OlympChecker is available. Download and update?"); } }
+
+        public static string Downloaded { get { return Get("Downloaded", "Downloaded"); } }
+
         public static string Copyright { get { return "Original version: (c) Medvednikov Alexander\nThis modification: (c) Plavin Alexander"; } }
     }
 

@@ -15,7 +15,7 @@ namespace OlympChecker
 	static class Utils
     {
         public static string programDir = Directory.GetCurrentDirectory();
-        private const string version = "2";
+        private const string version = "2.0";
         private const string downloadUrl = "";
 
         public static void CheckForUpdates()
@@ -27,9 +27,10 @@ namespace OlympChecker
 
                 if (newestVer != version)
                 {
-                    if (MessageBox.Show("Доступна новая версия программы (" + newestVer + "). Загрузить?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                    if (MessageBox.Show(Text.NewVersionAvailable, "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start(downloadUrl);
+                        new WebClient().DownloadFile(downloadUrl, "OlympChecker.exe");
+                        MessageBox.Show(Text.Downloaded);
                     }
                 }
             }
