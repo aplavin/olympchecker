@@ -1,4 +1,6 @@
-﻿namespace OlympChecker
+﻿// This is SPARTA!!!
+
+namespace OlympChecker
 {
     using Nini.Config;
     using System;
